@@ -11,13 +11,16 @@ import {
   Typography,
 } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { IconType } from '../types/utils';
 import MenuIcon from '@material-ui/icons/Menu';
+import ListIcon from '@material-ui/icons/List';
+import ListItemLink from './ListItemLink';
 import * as React from 'react';
 
-type MenuItem = { text: string, href: string };
+type MenuItem = { text: string, href: string, icon: IconType };
 
 const menu: MenuItem[] = [
-  { text: 'カクテル一覧', href: '/cocktails' },
+  { text: 'カクテル一覧', href: '/cocktails', icon: ListIcon },
 ];
 
 function MenuBar() {
@@ -50,11 +53,8 @@ function MenuBar() {
         </IconButton>
         <Divider />
         <List>
-          { menu.map(({ text, /*href*/ }) => (
-            <ListItem button dense key={ text }>
-              {/* TODO: Put icon */}
-              <ListItemText primary={ text } />
-            </ListItem>
+          { menu.map(({ text, href, icon }) => (
+            <ListItemLink key={ text } icon={ icon } href={ href } primary={ text } />
           )) }
         </List>
       </Drawer>
