@@ -1,3 +1,3 @@
-import MenuIcon from '@material-ui/icons/Menu';
+//import MenuIcon from '@material-ui/icons/Menu';
 
-export type IconType = typeof MenuIcon;
+//export type IconType = typeof MenuIcon;

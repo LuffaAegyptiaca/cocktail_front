@@ -1,30 +1,39 @@
-import { DataGrid, GridColumns, GridRowParams, GridRowsProp } from '@material-ui/data-grid';
+import { DataGrid, GridColDef, GridRowParams, GridRowsProp } from '@mui/x-data-grid';
 import * as React from 'react';
 import { useRouter } from 'next/router';
 
+import { Cocktail } from '../types/cocktail';
 import Page from '../../components/Page';
 import dummyCocktails from '../../dummy/cocktails';
 
-const columns = [
-  { field: 'name', headerName: 'Cocktail Name', width: 600 },
-] as GridColumns;
+type GridColumn = {
+  field: string,
+  headerName: string,
+  width: number,
+};
 
-const rows = dummyCocktails as GridRowsProp;
+const columns: GridColDef<GridColumn>[] = [
+  { field: 'id', headerName: 'ID', width: 100 },
+  { field: 'name', headerName: 'Cocktail Name', width: 600 },
+  { field: 'alcohol', headerName: 'Alcohol (%)', width: 100 },
+];
+
+const rows: GridRowsProp = dummyCocktails;
 
 export default function CocktailListPage(): JSX.Element {
   const router = useRouter();
-  const handleClick = React.useCallback((row: GridRowParams, e: React.MouseEvent) => {
+  const handleClick = React.useCallback((row: GridRowParams<Cocktail>, e: React.MouseEvent) => {
     e.preventDefault();
-    void router.push(`cocktails/${row.id}`);
+    void router.push(`cocktails/${ row.id }`);
   }, [router]);
   return (
     <Page>
       <div style={{ height: 250, width: '100%' }}>
         <DataGrid
-          columns={columns}
+          columns={ columns }
           disableSelectionOnClick
-          rows={rows}
-          onRowClick={handleClick}
+          rows={ rows }
+          onRowClick={ handleClick }
         />
       </div>
     </Page>

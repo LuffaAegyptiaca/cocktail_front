@@ -5,22 +5,21 @@ import {
   Drawer,
   IconButton,
   List,
-  ListItem,
-  ListItemText,
   Toolbar,
   Typography,
-} from '@material-ui/core';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { IconType } from '../types/utils';
-import MenuIcon from '@material-ui/icons/Menu';
-import ListIcon from '@material-ui/icons/List';
+} from '@mui/material';
+import {
+  Close as CloseIcon,
+  Menu as MenuIcon,
+  List as ListIcon,
+} from '@mui/icons-material';
 import ListItemLink from './ListItemLink';
 import * as React from 'react';
 
-type MenuItem = { text: string, href: string, icon: IconType };
+type MenuItem = { text: string, href: string, icon: any /* TODO: precise type */ };
 
 const menu: MenuItem[] = [
-  { text: 'カクテル一覧', href: '/cocktails', icon: ListIcon },
+  { text: 'カクテル一覧', href: '/cocktails', icon: (<ListIcon />) },
 ];
 
 function MenuBar() {
@@ -48,11 +47,11 @@ function MenuBar() {
       <Drawer
         open={drawerOpen}
       >
-        <IconButton onClick={handleDrawerClose}>
-          <ChevronLeftIcon />
+        <IconButton onClick={handleDrawerClose} size="small">
+          <CloseIcon /> Close
         </IconButton>
         <Divider />
-        <List>
+        <List disablePadding>
           { menu.map(({ text, href, icon }) => (
             <ListItemLink key={ text } icon={ icon } href={ href } primary={ text } />
           )) }
