@@ -16,7 +16,7 @@ import {
 import ListItemLink from './ListItemLink';
 import * as React from 'react';
 
-type MenuItem = { text: string, href: string, icon: any /* TODO: precise type */ };
+type MenuItem = { text: string, href: string, icon: React.ReactChild };
 
 const menu: MenuItem[] = [
   { text: 'カクテル一覧', href: '/cocktails', icon: (<ListIcon />) },
@@ -61,7 +61,11 @@ function MenuBar() {
   );
 }
 
-export default function Page({ children }: { children: React.ReactChild }) {
+type Props = {
+  children: React.ReactNode,
+};
+
+const Page: React.FC<Props> = ({ children }) => {
   return (
     <>
       <MenuBar />
@@ -70,4 +74,6 @@ export default function Page({ children }: { children: React.ReactChild }) {
       </Container>
     </>
   );
-}
+};
+
+export default Page;

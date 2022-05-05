@@ -2,7 +2,7 @@ import { DataGrid, GridColDef, GridRowParams, GridRowsProp } from '@mui/x-data-g
 import * as React from 'react';
 import { useRouter } from 'next/router';
 
-import { Cocktail } from '../types/cocktail';
+import { Cocktail } from '../../types/cocktail';
 import Page from '../../components/Page';
 import dummyCocktails from '../../dummy/cocktails';
 
@@ -20,7 +20,7 @@ const columns: GridColDef<GridColumn>[] = [
 
 const rows: GridRowsProp = dummyCocktails;
 
-export default function CocktailListPage(): JSX.Element {
+const CocktailListPage: React.FC = () => {
   const router = useRouter();
   const handleClick = React.useCallback((row: GridRowParams<Cocktail>, e: React.MouseEvent) => {
     e.preventDefault();
@@ -38,4 +38,6 @@ export default function CocktailListPage(): JSX.Element {
       </div>
     </Page>
   );
-}
+};
+
+export default CocktailListPage;
