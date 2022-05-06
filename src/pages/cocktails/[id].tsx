@@ -10,7 +10,7 @@ export const getStaticPaths: GetStaticPaths = () => {
     paths: [],
     fallback: 'blocking',
   };
-}
+};
 
 export const getStaticProps: GetStaticProps = ({ params }) => {
   if (params == null) {
@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
     },
     revalidate: 60,
   };
-}
+};
 
 type Props = {
   cocktail: Cocktail,
