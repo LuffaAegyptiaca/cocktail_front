@@ -19,7 +19,7 @@ import * as React from 'react';
 type MenuItem = { text: string, href: string, icon: React.ReactChild };
 
 const menu: MenuItem[] = [
-  { text: 'カクテル一覧', href: '/cocktails', icon: (<ListIcon />) },
+  { text: 'カクテル一覧', href: '/', icon: (<ListIcon />) },
 ];
 
 function MenuBar() {
