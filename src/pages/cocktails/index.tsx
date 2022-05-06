@@ -1,8 +1,12 @@
-import { DataGrid, GridColDef, GridRowParams, GridRowsProp } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridColDef,
+  GridRenderCellParams,
+  GridRowsProp,
+} from '@mui/x-data-grid';
 import * as React from 'react';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-import { Cocktail } from '../../types/cocktail';
 import Page from '../../components/Page';
 import dummyCocktails from '../../dummy/cocktails';
 
@@ -12,32 +16,33 @@ type GridColumn = {
   width: number,
 };
 
+const NameCell = (params: GridRenderCellParams<string>) => (
+  <Link href={ { pathname: '/cocktails/[id]', query: { id: params.id }} }>{ params.value }</Link>
+);
+
 const columns: GridColDef<GridColumn>[] = [
-  { field: 'id', headerName: 'ID', width: 100 },
-  { field: 'name', headerName: 'Cocktail Name', width: 600 },
+  {
+    field: 'name',
+    headerName: 'Cocktail Name',
+    width: 600,
+    renderCell: NameCell,
+  },
   { field: 'alcohol', headerName: 'Alcohol (%)', width: 100 },
 ];
 
 const rows: GridRowsProp = dummyCocktails;
 
-const CocktailListPage: React.FC = () => {
-  const router = useRouter();
-  const handleClick = React.useCallback((row: GridRowParams<Cocktail>, e: React.MouseEvent) => {
-    e.preventDefault();
-    void router.push(`cocktails/${ row.id }`);
-  }, [router]);
-  return (
-    <Page>
-      <div style={{ height: 250, width: '100%' }}>
-        <DataGrid
-          columns={ columns }
-          disableSelectionOnClick
-          rows={ rows }
-          onRowClick={ handleClick }
-        />
-      </div>
-    </Page>
-  );
-};
+const CocktailListPage: React.FC = () => (
+  <Page>
+    <div
+    style={{ height: 250, width: '100%' }}>
+      <DataGrid
+        columns={ columns }
+        disableSelectionOnClick
+        rows={ rows }
+      />
+    </div>
+  </Page>
+);
 
 export default CocktailListPage;
