@@ -23,11 +23,11 @@ const NameCell = (params: GridRenderCellParams<string>) => (
 const columns: GridColDef<GridColumn>[] = [
   {
     field: 'name',
-    headerName: 'Cocktail Name',
+    headerName: 'カクテル',
     width: 600,
     renderCell: NameCell,
   },
-  { field: 'alcohol', headerName: 'Alcohol (%)', width: 100 },
+  { field: 'alcohol', headerName: 'alc (%)', width: 100 },
 ];
 
 const rows: GridRowsProp = dummyCocktails;
